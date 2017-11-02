@@ -58,6 +58,3 @@ jobs:
       - store_artifacts:
           path: build/reports/jacoco/test
           destination: coverage_report/
-
-      - store_artifacts:
-          path: build/reports/tests
