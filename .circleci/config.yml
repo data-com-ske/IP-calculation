@@ -14,25 +14,25 @@ jobs:
       - restore_cache:
           key: jar-{{ checksum "build.gradle" }}
 
-      - run: gradle --version
-
-      - run: gradle buildEnvironment
+      - run:
+          name: Gradle version
+          command: gradle --version
 
       - run:
-          name: Runs all checks.
-          command: gradle check
+          name: gradle environment
+          command: gradle buildEnvironment --info --stacktrace
 
       - run:
           name: Install dependencies
-          command: gradle dependencies
+          command: gradle dependencies --info --stacktrace
 
       - run:
           name: Compiles production Java source files using javac.
-          command: gradle compileJava
+          command: gradle compileJava --info --stacktrace
 
       - run:
           name: Assembles main classes.
-          command: gradle classes
+          command: gradle classes --info --stacktrace
 
       - save_cache:
           paths:
@@ -42,7 +42,7 @@ jobs:
 
       - run:
           name: Runs the unit tests.
-          command: gradle test
+          command: gradle test --info
 
       # - store_test_results:
           # path: target/surefire-reports

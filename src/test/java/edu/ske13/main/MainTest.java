@@ -1,5 +1,6 @@
 package edu.ske13.main;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * @version 1.0
  * @since Thu 02/Nov/2017 - 21:30
  */
-public class MainTest {
+@DisplayName("Main Test")
+class MainTest {
 	
 	@RepeatedTest(10)
 	void firstTest() {
