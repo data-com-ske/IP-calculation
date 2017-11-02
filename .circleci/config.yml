@@ -52,5 +52,5 @@ jobs:
       # - store_artifacts:
           # path: target/demo-java-spring-0.0.1-beta.1.jar
 
-      - store_actifacts:
+      - store_artifacts:
           path: build
