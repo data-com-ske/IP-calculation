@@ -1,20 +1,26 @@
 package edu.ske13.main;
 
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.RepeatedTest;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author kamontat
  * @version 1.0
  * @since Thu 02/Nov/2017 - 21:30
  */
-@DisplayName("Main Test")
-class MainTest {
+@RunWith(JUnit4.class)
+public class MainTest {
 	
-	@RepeatedTest(10)
-	void firstTest() {
+	@Test()
+	public void firstTest() {
 		assertEquals(Main.HELLO, Main.say_hello());
+	}
+	
+	@Test()
+	public void fail() {
+		assertEquals("asdf", "asdf");
 	}
 }
