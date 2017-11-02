@@ -1,0 +1,46 @@
+version: 2
+jobs:
+  build:
+
+    working_directory: ~/repo
+
+    docker:
+      - image: circleci/openjdk:8-jdk-browsers
+
+    steps:
+
+      - checkout
+
+      - restore_cache:
+          key: jar-{{ checksum "build.gradle" }}
+
+      - run: ./gradlew --version
+
+      - run: ./gradlew buildEnvironment
+
+      - run:
+          name: Runs all checks.
+          command: ./gradlew check
+
+      - run:
+          name: Compiles production Java source files using javac.
+          command: ./gradlew compileJava
+
+      - run:
+          name: Assembles main classes.
+          command: ./gradlew classes
+
+      - run:
+          name: Runs the unit tests.
+          command: ./gradlew test
+
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: jar-{{ checksum "build.gradle" }}
+
+      # - store_test_results:
+          # path: target/surefire-reports
+
+      # - store_artifacts:
+          # path: target/demo-java-spring-0.0.1-beta.1.jar
