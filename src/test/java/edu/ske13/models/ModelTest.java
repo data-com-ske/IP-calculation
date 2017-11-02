@@ -1,5 +1,6 @@
-package edu.ske13.main;
+package edu.ske13.models;
 
+import edu.ske13.main.Main;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -9,18 +10,18 @@ import static org.junit.Assert.assertEquals;
 /**
  * @author kamontat
  * @version 1.0
- * @since Thu 02/Nov/2017 - 21:30
+ * @since Fri 03/Nov/2017 - 00:42
  */
 @RunWith(JUnit4.class)
-public class MainTest {
+public class ModelTest {
 	
 	@Test()
-	public void firstTest() {
+	public void secondTest() {
 		assertEquals(Main.HELLO, Main.say_hello());
 	}
 	
 	@Test()
-	public void fail() {
+	public void fail2() {
 		assertEquals("asdf", "asdf");
 	}
 }
