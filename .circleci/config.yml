@@ -1,18 +1,16 @@
 version: 2
 jobs:
   build:
-    docker:
-          - image: circleci/openjdk:8-jdk-browsers
-          # - image: circleci/openjdk:8-jdk
     working_directory: ~/repo
+    docker:
+      # - image: circleci/openjdk:8-jdk
+      - image: circleci/openjdk:8-jdk-browsers
     environment:
-          # Customize the JVM maximum heap limit
-          JVM_OPTS: -Xmx3200m
-          TERM: dumb
+      # Customize the JVM maximum heap limit
+      JVM_OPTS: -Xmx3200m
+      TERM: dumb
     steps:
-
       - checkout
-
       - restore_cache:
           key: jar-{{ checksum "build.gradle" }}
 
