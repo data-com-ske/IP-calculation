@@ -36,7 +36,7 @@ jobs:
 
       - save_cache:
           paths:
-            - ~/.m2
+            - ~/.gradle
           key: jar-{{ checksum "build.gradle" }}
 
       # - store_test_results:
@@ -44,3 +44,6 @@ jobs:
 
       # - store_artifacts:
           # path: target/demo-java-spring-0.0.1-beta.1.jar
+
+        - store_actifacts:
+            path: build
