@@ -26,14 +26,6 @@ jobs:
           name: Install dependencies
           command: gradle dependencies --info --stacktrace
 
-      - run:
-          name: Compiles production Java source files using javac.
-          command: gradle compileJava --info --stacktrace
-
-      - run:
-          name: Assembles main classes.
-          command: gradle classes --info --stacktrace
-
       - save_cache:
           paths:
             - ~/.gradle

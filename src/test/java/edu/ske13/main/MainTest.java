@@ -2,7 +2,6 @@ package edu.ske13.main;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -17,10 +16,5 @@ class MainTest {
 	@RepeatedTest(10)
 	void firstTest() {
 		assertEquals(Main.HELLO, Main.say_hello());
-	}
-	
-	@Test
-	void failTest() {
-		assertEquals("HELO", Main.say_hello());
 	}
 }
