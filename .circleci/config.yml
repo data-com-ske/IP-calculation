@@ -16,8 +16,6 @@ jobs:
 
       - run: gradle --version
 
-      - run: ./gradlew --version
-
       - run: gradle buildEnvironment
 
       - run:
