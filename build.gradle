@@ -35,13 +35,13 @@ wrapper {
 
 // test configuration
 
-//junitPlatform {
-//    enableStandardTestTask = true
-//}
+// junitPlatform {
+//     enableStandardTestTask = true
+// }
 
-test {
-    finalizedBy jacocoTestReport
-}
+// test {
+//     finalizedBy jacocoTestReport
+// }
 
 // coverage setting
 jacocoTestReport {

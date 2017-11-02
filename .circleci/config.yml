@@ -36,11 +36,28 @@ jobs:
           name: Runs the unit tests.
           command: gradle test --info
 
-      # - store_test_results:
-          # path: target/surefire-reports
+      - run:
+          name: Generate coverage report
+          command: gradle jacocoTestReport --info
 
-      # - store_artifacts:
-          # path: target/demo-java-spring-0.0.1-beta.1.jar
+      - run:
+          name: upload (codecov)
+          command: bash <(curl -s https://codecov.io/bash)
+
+      - store_test_results:
+          path: build/test-results/test
 
       - store_artifacts:
-          path: build
+          path: build/libs
+          destination: jar_files/
+
+      - store_artifacts:
+          path: build/reports/tests/test
+          destination: test_report/
+
+      - store_artifacts:
+          path: build/reports/jacoco/test
+          destination: coverage_report/
+
+      - store_artifacts:
+          path: build/reports/tests
