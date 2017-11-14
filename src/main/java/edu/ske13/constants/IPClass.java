@@ -1,6 +1,7 @@
 package edu.ske13.constants;
 
 import edu.ske13.objects.IPAddress;
+import edu.ske13.utils.IPUtils;
 
 /**
  * @author kamontat
@@ -8,14 +9,14 @@ import edu.ske13.objects.IPAddress;
  * @since Fri 10/Nov/2017 - 19:53
  */
 public enum IPClass {
-    ClassA(new IPAddress("255.0.0.0")),
-    ClassB(new IPAddress("255.255.0.0")),
-    ClassC(new IPAddress("255.255.255.0")),
+    ClassA(IPUtils.forceCreateIPAddress("255.0.0.0")),
+    ClassB(IPUtils.forceCreateIPAddress("255.255.0.0")),
+    ClassC(IPUtils.forceCreateIPAddress("255.255.255.0")),
     ClassD(null),
     ClassE(null),
-    PrivateClassA(new IPAddress("255.0.0.0")),
-    PrivateClassB(new IPAddress("255.240.0.0")),
-    PrivateClassC(new IPAddress("255.255.0.0"));
+    PrivateClassA(IPUtils.forceCreateIPAddress("255.0.0.0")),
+    PrivateClassB(IPUtils.forceCreateIPAddress("255.240.0.0")),
+    PrivateClassC(IPUtils.forceCreateIPAddress("255.255.0.0"));
     
     private IPAddress subnetMask;
     
