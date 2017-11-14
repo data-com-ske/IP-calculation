@@ -16,16 +16,15 @@ public class IPAddress {
     private NumberBase fourth;
     
     public IPAddress(String raw) {
-        this.raw = raw;
-        updateNumberBase();
+        updateIP(raw);
     }
     
     public IPAddress(int first, int second, int third, int fourth) {
-        this(String.format("%d.%d.%d.%d", first, second, third, fourth));
+        updateIP(first, second, third, fourth);
     }
     
     public IPAddress(String arg, String arg1, String arg2, String arg3) {
-        this(String.format("%s.%s.%s.%s", arg, arg1, arg2, arg3));
+        updateIP(arg, arg1, arg2, arg3);
     }
     
     public void updateIP(String raw) {
@@ -34,13 +33,11 @@ public class IPAddress {
     }
     
     public void updateIP(int first, int second, int third, int fourth) {
-        this.raw = String.format("%d.%d.%d.%d", first, second, third, fourth);
-        updateNumberBase();
+        this.updateIP(String.format("%d.%d.%d.%d", first, second, third, fourth));
     }
     
     public void updateIP(String arg, String arg1, String arg2, String arg3) {
-        this.raw = String.format("%s.%s.%s.%s", arg, arg1, arg2, arg3);
-        updateNumberBase();
+        this.updateIP(String.format("%s.%s.%s.%s", arg, arg1, arg2, arg3));
     }
     
     public IPAddress getDefaultSubnetMask() {
