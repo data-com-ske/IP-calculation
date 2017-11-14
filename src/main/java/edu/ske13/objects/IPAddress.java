@@ -28,18 +28,19 @@ public class IPAddress {
         updateIP(arg, arg1, arg2, arg3);
     }
     
-    public void updateIP(String raw) throws IPException {
+    public IPAddress updateIP(String raw) throws IPException {
         this.raw = raw;
         updateNumberBase();
         validateIP();
+        return this;
     }
     
-    public void updateIP(int first, int second, int third, int fourth) throws IPException {
-        this.updateIP(String.format("%d.%d.%d.%d", first, second, third, fourth));
+    public IPAddress updateIP(int first, int second, int third, int fourth) throws IPException {
+        return this.updateIP(String.format("%d.%d.%d.%d", first, second, third, fourth));
     }
     
-    public void updateIP(String arg, String arg1, String arg2, String arg3) throws IPException {
-        this.updateIP(String.format("%s.%s.%s.%s", arg, arg1, arg2, arg3));
+    public IPAddress updateIP(String arg, String arg1, String arg2, String arg3) throws IPException {
+        return this.updateIP(String.format("%s.%s.%s.%s", arg, arg1, arg2, arg3));
     }
     
     public IPAddress getDefaultSubnetMask() {
