@@ -28,6 +28,21 @@ public class IPAddress {
         this(String.format("%s.%s.%s.%s", arg, arg1, arg2, arg3));
     }
     
+    public void updateIP(String raw) {
+        this.raw = raw;
+        updateNumberBase();
+    }
+    
+    public void updateIP(int first, int second, int third, int fourth) {
+        this.raw = String.format("%d.%d.%d.%d", first, second, third, fourth);
+        updateNumberBase();
+    }
+    
+    public void updateIP(String arg, String arg1, String arg2, String arg3) {
+        this.raw = String.format("%s.%s.%s.%s", arg, arg1, arg2, arg3);
+        updateNumberBase();
+    }
+    
     public IPAddress getDefaultSubnetMask() {
         return getIPClass().getDefaultSubnetMask();
     }
