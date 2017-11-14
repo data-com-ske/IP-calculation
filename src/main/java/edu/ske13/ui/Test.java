@@ -1,14 +1,15 @@
 package edu.ske13.ui;
 
-import edu.ske13.ui.main.MainView;
-import edu.ske13.utils.ui.Display;
+import edu.ske13.ui.main.MainController;
 
 public class Test {
     public static void main(String[] args) {
-        //********* run main on top left corner *********//
-        // MainView.run(Display.getDefaultPoint);
+        MainController controller = new MainController();
         
-        //********* run main on center screen *********//
-        MainView.run(Display.getCenterLocation(MainView.getPageSize()));
+        controller.start(null); /* default point 0,0 */
+        
+        // controller.start(new Point(15, 155)); /* fix point 15,155 */
+        
+        // controller.startCenter(); /* center of screen */
     }
 }
