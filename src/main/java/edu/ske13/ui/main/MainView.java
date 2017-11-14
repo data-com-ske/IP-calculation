@@ -86,11 +86,11 @@ public class MainView extends JFrame {
         throw new NotImplementedException();
     }
     
-    String getHostNumber() {
+    Integer getHostNumber() {
         throw new NotImplementedException();
     }
     
-    String getSubnetNumber() {
+    Integer getSubnetNumber() {
         throw new NotImplementedException();
     }
     
@@ -98,7 +98,23 @@ public class MainView extends JFrame {
         throw new NotImplementedException();
     }
     
-    void appendTable(/* input something */) {
+    void setIP(String ip) {
+        throw new NotImplementedException();
+    }
+    
+    void setHostNumber(Integer number) {
+        throw new NotImplementedException();
+    }
+    
+    void setSubnetNumber(Integer number) {
+        throw new NotImplementedException();
+    }
+    
+    void setChooseType(OutputType type) {
+        throw new NotImplementedException();
+    }
+    
+    void appendTable(/* TODO: input something */) {
         throw new NotImplementedException();
     }
     
@@ -108,7 +124,7 @@ public class MainView extends JFrame {
     
     /**************** ui helper / validation ****************/
     
-    private void checkIP() {
+    private boolean checkIP() {
         throw new NotImplementedException();
     }
     
