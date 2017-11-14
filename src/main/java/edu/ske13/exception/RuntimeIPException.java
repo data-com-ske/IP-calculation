@@ -3,15 +3,16 @@ package edu.ske13.exception;
 /**
  * @author kamontat
  * @version 1.0
- * @since Sun 05/Nov/2017 - 18:46
+ * @since Fri 10/Nov/2017 - 19:51
  */
-public class IPException extends Exception {
+public class RuntimeIPException extends RuntimeException {
+    
     /**
      * Constructs a new exception with {@code null} as its detail message.
      * The cause is not initialized, and may subsequently be initialized by a
      * call to {@link #initCause}.
      */
-    public IPException() {
+    public RuntimeIPException() {
         super();
     }
     
@@ -24,7 +25,7 @@ public class IPException extends Exception {
      *         the detail message. The detail message is saved for
      *         later retrieval by the {@link #getMessage()} method.
      */
-    public IPException(Error error) {
+    public RuntimeIPException(Error error) {
         super(error.toString());
     }
     
@@ -44,7 +45,7 @@ public class IPException extends Exception {
      *         unknown.)
      * @since 1.4
      */
-    public IPException(Error error, Throwable cause) {
+    public RuntimeIPException(Error error, Throwable cause) {
         super(error.toString(), cause);
     }
 }
