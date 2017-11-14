@@ -1,6 +1,7 @@
 package edu.ske13.objects;
 
 import edu.ske13.constants.IPClass;
+import edu.ske13.exception.IPException;
 import edu.ske13.exception.NotImplementedException;
 
 /**
@@ -15,28 +16,29 @@ public class IPAddress {
     private NumberBase third;
     private NumberBase fourth;
     
-    public IPAddress(String raw) {
+    public IPAddress(String raw) throws IPException {
         updateIP(raw);
     }
     
-    public IPAddress(int first, int second, int third, int fourth) {
+    public IPAddress(int first, int second, int third, int fourth) throws IPException {
         updateIP(first, second, third, fourth);
     }
     
-    public IPAddress(String arg, String arg1, String arg2, String arg3) {
+    public IPAddress(String arg, String arg1, String arg2, String arg3) throws IPException {
         updateIP(arg, arg1, arg2, arg3);
     }
     
-    public void updateIP(String raw) {
+    public void updateIP(String raw) throws IPException {
         this.raw = raw;
         updateNumberBase();
+        validateIP();
     }
     
-    public void updateIP(int first, int second, int third, int fourth) {
+    public void updateIP(int first, int second, int third, int fourth) throws IPException {
         this.updateIP(String.format("%d.%d.%d.%d", first, second, third, fourth));
     }
     
-    public void updateIP(String arg, String arg1, String arg2, String arg3) {
+    public void updateIP(String arg, String arg1, String arg2, String arg3) throws IPException {
         this.updateIP(String.format("%s.%s.%s.%s", arg, arg1, arg2, arg3));
     }
     
@@ -45,7 +47,13 @@ public class IPAddress {
     }
     
     public boolean isCorrect() {
-        throw new NotImplementedException();
+        try {
+            validateIP();
+            return true;
+        } catch (IPException e) {
+            // e.printStackTrace();
+            return false;
+        }
     }
     
     public boolean isSubnetMask() {
@@ -65,6 +73,10 @@ public class IPAddress {
     }
     
     private void updateNumberBase() {
+        throw new NotImplementedException();
+    }
+    
+    private void validateIP() throws IPException {
         throw new NotImplementedException();
     }
     
