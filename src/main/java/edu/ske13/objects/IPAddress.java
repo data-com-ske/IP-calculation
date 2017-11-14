@@ -32,6 +32,10 @@ public class IPAddress {
         return getIPClass().getDefaultSubnetMask();
     }
     
+    public boolean isCorrect() {
+        throw new NotImplementedException();
+    }
+    
     public boolean isSubnetMask() {
         throw new NotImplementedException();
     }
