@@ -65,9 +65,7 @@ public class IPAddress {
         /* throw new NotImplementedException(); */
         String split[] = toString().split("\\.");
         for (int i = 0; i < 4; i++) {
-            if (split[i].toString().equals("255") || split[i].toString().equals("0")) {
-                cf = 0;
-            } else {
+            if (!(split[i].toString().equals("255") || split[i].toString().equals("0"))) {
                 cf++;
             }
         }
@@ -75,18 +73,8 @@ public class IPAddress {
     }
 
     public boolean isPrivate() {
-        String split[] = toString().split("\\.");
-        int cfalse = 0;
-        for (int i = 0; i < 4; i++) {
-            if (Integer.parseInt(split[i]) != 255 || Integer.parseInt(split[i]) != 0) {
-                cfalse = 0;
-            } else {
-                cfalse++;
-            }
-        }
-        return cfalse == 0;
+        return !isSubnetMask();
     }
-
 
     public boolean isLoopback() {
         /* throw new NotImplementedException(); */
