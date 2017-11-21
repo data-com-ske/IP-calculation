@@ -100,10 +100,10 @@ public class IPAddress {
         throw new NotImplementedException();
     }
 
-    private boolean validateIP() throws IPException {
+    private void validateIP() throws IPException {
         Pattern PATTERN = Pattern.compile(
                 "^(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])$");
-        return PATTERN.matcher(toString()).matches();
+        PATTERN.matcher(toString()).matches();
         /* throw new NotImplementedException(); */
     }
 
