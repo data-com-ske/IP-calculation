@@ -66,18 +66,27 @@ public class IPAddress {
         String split[] = toString().split("\\.");
         for (int i = 0; i < 4; i++) {
             if (split[i].toString().equals("255") || split[i].toString().equals("0")) {
-                return true;
+                cf = 0;
             } else {
                 cf++;
-                return false;
             }
         }
         return cf == 0;
     }
 
     public boolean isPrivate() {
-        return getIPClass().isPrivate();
+        String split[] = toString().split("\\.");
+        int cfalse = 0;
+        for (int i = 0; i < 4; i++) {
+            if (Integer.parseInt(split[i]) != 255 || Integer.parseInt(split[i]) != 0) {
+                cfalse = 0;
+            } else {
+                cfalse++;
+            }
+        }
+        return cfalse == 0;
     }
+
 
     public boolean isLoopback() {
         /* throw new NotImplementedException(); */
@@ -88,7 +97,7 @@ public class IPAddress {
          /* throw new NotImplementedException(); */
         String split[] = toString().split("\\.");
         int firstip = Integer.parseInt(split[0]);
-        if (firstip > 1 && firstip < 127) return IPClass.ClassA;
+        if (firstip > 0 && firstip < 127) return IPClass.ClassA;
         else if (firstip > 126 && firstip < 192) return IPClass.ClassB;
         else if (firstip > 191 && firstip < 224) return IPClass.ClassC;
         else if (firstip > 223 && firstip < 240) return IPClass.ClassD;
