@@ -97,7 +97,14 @@ public class IPAddress {
     }
 
     private void updateNumberBase() {
-        throw new NotImplementedException();
+        String split[] = toString().split("\\.");
+        String bi[] = new String[4];
+        String ip = "";
+        String temp = new String("00000000");
+        for (int i = 0; i < 4; i++) {
+            bi[i] = temp.substring(Integer.toBinaryString(Integer.parseInt(split[i])).length()) + Integer.toBinaryString(Integer.parseInt(split[i]));
+            ip += bi[i];
+        }
     }
 
     private void validateIP() throws IPException {
