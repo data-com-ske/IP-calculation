@@ -1,10 +1,13 @@
 package edu.ske13.objects;
 
+import edu.ske13.constants.Base;
 import edu.ske13.constants.IPClass;
 import edu.ske13.exception.IPException;
 import edu.ske13.exception.NotImplementedException;
 import jdk.nashorn.internal.runtime.regexp.joni.exception.ErrorMessages;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.regex.Pattern;
 
 /**
@@ -76,9 +79,9 @@ public class IPAddress {
         return !isSubnetMask();
     }
 
-    public boolean isLoopback() {
+    public boolean isLoopback() throws UnknownHostException {
         /* throw new NotImplementedException(); */
-        return raw.equals("127.0.0.1");
+        return   InetAddress.getByName(raw).isLoopbackAddress();
     }
 
     public IPClass getIPClass() {
