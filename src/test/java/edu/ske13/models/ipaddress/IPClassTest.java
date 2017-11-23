@@ -26,7 +26,7 @@ public class IPClassTest {
     private IPAddress a;
     private IPClass c;
     
-    private Object[][] string_testData() {
+    private Object string_testData() {
         return new Object[][]{
                 // default ip
                 {"2.1.0.0", IPClass.ClassA},
@@ -48,7 +48,7 @@ public class IPClassTest {
         };
     }
     
-    private Object[][] separate_testData() {
+    private Object separate_testData() {
         return new Object[][]{
                 // separate default ip
                 {2, 1, 0, 0, IPClass.ClassA},
