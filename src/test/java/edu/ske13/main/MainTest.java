@@ -13,14 +13,14 @@ import static org.junit.Assert.assertEquals;
  */
 @RunWith(JUnit4.class)
 public class MainTest {
-	
-	@Test()
-	public void firstTest() {
-		assertEquals(Main.HELLO, Main.say_hello());
-	}
-	
-	@Test()
-	public void fail() {
-		assertEquals("asdf", "asdf");
-	}
+    
+    @Test()
+    public void firstTest() {
+        assertEquals(Main.HELLO, Main.say_hello());
+    }
+    
+    @Test()
+    public void fail() {
+        assertEquals("asdf", "asdf");
+    }
 }

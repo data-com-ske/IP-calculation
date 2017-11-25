@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.fail;
 
 /**
@@ -46,7 +47,8 @@ public class MaskTest {
     public void test_getting_mask(String... args) throws IPException {
         try {
             IPAddress a = new IPAddress(args[0]);
-            assertEquals(args[1], a.getDefaultSubnetMask().toString());
+            if (args[1] == null) assertNull(a.getDefaultSubnetMask());
+            else assertEquals(args[1], a.getDefaultSubnetMask().toString());
         } catch (ClassCastException | NotImplementedException e) {
             fail(e.getMessage());
         }

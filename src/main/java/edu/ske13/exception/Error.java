@@ -8,6 +8,10 @@ package edu.ske13.exception;
 public enum Error {
     ValidateException("invalid input", 100),
     
+    InvalidIPException("IP is not invalid", 200),
+    
+    IPClassNotFound("IP class not found", 404),
+    
     NotImplement("this method isn't implement yet!", 999);
     
     private String title;
