@@ -47,7 +47,11 @@ public class IPUtils {
     }
     
     public static IPAddress getIPAddress(String ipAddress) throws IPException {
-        return address.updateIP(ipAddress);
+        return address.updateIP(ipAddress, true);
+    }
+    
+    public static IPAddress getIPAddress(String ipAddress, boolean initialClass) throws IPException {
+        return address.updateIP(ipAddress, initialClass);
     }
     
     public static IPAddress getIPAddress(int first, int second, int third, int fourth) throws IPException {

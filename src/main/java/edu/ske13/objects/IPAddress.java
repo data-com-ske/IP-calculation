@@ -39,13 +39,20 @@ public class IPAddress {
     }
     
     public IPAddress(String raw, boolean initialClass) throws IPException {
-        updateIP(raw);
-        if (initialClass) setIpClass();
+        updateIP(raw, initialClass);
     }
     
     public IPAddress updateIP(String raw) throws IPException {
         this.raw = raw;
         updateNumberBase();
+        setIpClass();
+        return this;
+    }
+    
+    public IPAddress updateIP(String raw, boolean initialClass) throws IPException {
+        this.raw = raw;
+        updateNumberBase();
+        if (initialClass) setIpClass();
         return this;
     }
     
