@@ -7,11 +7,17 @@ import edu.ske13.utils.ui.Display;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 import static javax.swing.SwingUtilities.invokeLater;
 
 public class MainView extends JFrame {
     private static MainView view = null;
+    
+    public enum InputType {
+        SUBNET,
+        HOST;
+    }
     
     private JTextField ip1;
     private JTextField ip2;
@@ -19,6 +25,10 @@ public class MainView extends JFrame {
     private JTextField ip4;
     private JTextField sh;
     private JTable table;
+    
+    private JComboBox<InputType> comboBox;
+    
+    private JButton enterBtn;
     
     private String ip;
     private int sh_number;
@@ -79,6 +89,14 @@ public class MainView extends JFrame {
     
     /**************** controller usage method ****************/
     
+    void addButtonListener(ActionListener a) {
+        enterBtn.addActionListener(a);
+    }
+    
+    InputType getInputType() {
+        return comboBox.getPrototypeDisplayValue();
+    }
+    
     String getIP() {
         String value = ip1.getText();
         String value2 = ip2.getText();
@@ -133,7 +151,6 @@ public class MainView extends JFrame {
      * Initialize the contents of the
      */
     private void initialize() {
-        
         // this.setBounds(200, 200, 550, 550);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setMinimumSize(new Dimension(400, 350));
@@ -211,14 +228,18 @@ public class MainView extends JFrame {
         ip4.setBounds(310, 25, 53, 20);
         containerA.add(ip4);
         
-        
-        JLabel SH_text = new JLabel("Subnet/Host: ");
-        SH_text.setBounds(10, 76, 81, 14);
+        JLabel SH_text = new JLabel("Type: ");
         containerB.add(SH_text);
+        
+        comboBox = new JComboBox<>(InputType.values());
+        containerB.add(comboBox);
         
         sh = new JTextField();
         sh.setBounds(92, 73, 271, 20);
         containerB.add(sh);
         sh.setColumns(10);
+        
+        enterBtn = new JButton("Enter!!");
+        containerB.add(enterBtn);
     }
 }

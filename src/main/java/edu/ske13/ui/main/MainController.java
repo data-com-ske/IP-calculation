@@ -1,6 +1,6 @@
 package edu.ske13.ui.main;
 
-import edu.ske13.exception.NotImplementedException;
+import edu.ske13.objects.IPAddress;
 
 import java.awt.*;
 
@@ -17,8 +17,6 @@ public class MainController {
     }
     
     public void start(Point point) {
-        handleInputIP();
-        handleInputHost();
         handleEnterKey();
         
         MainView.run(point);
@@ -32,18 +30,13 @@ public class MainController {
         MainView.end();
     }
     
-    /**
-     * Add {@link java.awt.event.KeyListener} too validate code
-     */
-    public void handleInputIP() {
-        throw new NotImplementedException();
-    }
-    
-    public void handleInputHost() {
-        throw new NotImplementedException();
-    }
-    
     public void handleEnterKey() {
-        throw new NotImplementedException();
+        view.addButtonListener(e -> {
+            IPAddress ip = new IPAddress(view.getIP());
+            MainView.InputType t = view.getInputType();
+            int number = view.getHostOrSubnetNumber();
+            
+            // view.appendTable();
+        });
     }
 }
