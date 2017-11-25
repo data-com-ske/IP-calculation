@@ -1,6 +1,7 @@
 package edu.ske13.ui.main;
 
 import edu.ske13.objects.IPAddress;
+import edu.ske13.utils.IPUtils;
 
 import java.awt.*;
 
@@ -32,7 +33,7 @@ public class MainController {
     
     public void handleEnterKey() {
         view.addButtonListener(e -> {
-            IPAddress ip = new IPAddress(view.getIP());
+            IPAddress ip = IPUtils.newIPAddress(view.getIP(), true);
             MainView.InputType t = view.getInputType();
             int number = view.getHostOrSubnetNumber();
             
