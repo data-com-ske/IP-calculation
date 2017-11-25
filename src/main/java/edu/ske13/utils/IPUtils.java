@@ -67,11 +67,9 @@ public class IPUtils {
         try {
             return new IPAddress(ipAddress, initialClass);
         } catch (IPException e) {
-            return null;
-        } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
-        return null;
     }
     
     public static IPAddress newIPAddress(int first, int second, int third, int fourth) {

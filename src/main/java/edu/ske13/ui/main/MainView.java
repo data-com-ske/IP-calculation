@@ -89,7 +89,7 @@ public class MainView extends JFrame {
     
     /**************** controller usage method ****************/
     
-    void addButtonListener(ActionListener a) {
+    void addEnterButtonListener(ActionListener a) {
         enterBtn.addActionListener(a);
     }
     
@@ -108,6 +108,7 @@ public class MainView extends JFrame {
     
     Integer getHostOrSubnetNumber() {
         String value = sh.getText();
+        if (value.equals("")) return 0;
         this.sh_number = Integer.parseInt(value);
         return sh_number;
     }

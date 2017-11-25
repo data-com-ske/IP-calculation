@@ -6,6 +6,8 @@ package edu.ske13.exception;
  * @since Sun 05/Nov/2017 - 18:46
  */
 public class IPException extends Exception {
+    private Error error;
+    
     /**
      * Constructs a new exception with {@code null} as its detail message.
      * The cause is not initialized, and may subsequently be initialized by a
@@ -13,6 +15,7 @@ public class IPException extends Exception {
      */
     public IPException() {
         super();
+        this.error = Error.UnknownError;
     }
     
     /**
@@ -26,6 +29,7 @@ public class IPException extends Exception {
      */
     public IPException(Error error) {
         super(error.toString());
+        this.error = error;
     }
     
     /**
@@ -46,5 +50,14 @@ public class IPException extends Exception {
      */
     public IPException(Error error, Throwable cause) {
         super(error.toString(), cause);
+        this.error = error;
+    }
+    
+    public String getErrorMessage() {
+        return error.getTitle();
+    }
+    
+    public int getErrorCode() {
+        return error.getCode();
     }
 }

@@ -69,6 +69,15 @@ public class IPAddress {
         return getIPClass().getDefaultSubnetMask();
     }
     
+    public IPAddress resetIP() {
+        try {
+            return new IPAddress(this.getIPIndex(0).and(getDefaultSubnetMask().getIPIndex(0)).intValue(), this.getIPIndex(1).and(getDefaultSubnetMask().getIPIndex(1)).intValue(), this.getIPIndex(2).and(getDefaultSubnetMask().getIPIndex(2)).intValue(), this.getIPIndex(3).and(getDefaultSubnetMask().getIPIndex(3)).intValue());
+        } catch (IPException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
     public NumberBase getIPIndex(int index) {
         return numbers.get(index);
     }

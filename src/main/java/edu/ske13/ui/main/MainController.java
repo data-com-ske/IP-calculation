@@ -1,8 +1,9 @@
 package edu.ske13.ui.main;
 
+import edu.ske13.exception.IPException;
 import edu.ske13.objects.IPAddress;
-import edu.ske13.utils.IPUtils;
 
+import javax.swing.*;
 import java.awt.*;
 
 /**
@@ -19,11 +20,11 @@ public class MainController {
     
     public void start(Point point) {
         handleEnterKey();
-        
         MainView.run(point);
     }
     
     public void startCenter() {
+        handleEnterKey();
         MainView.run();
     }
     
@@ -32,12 +33,27 @@ public class MainController {
     }
     
     public void handleEnterKey() {
-        view.addButtonListener(e -> {
-            IPAddress ip = IPUtils.newIPAddress(view.getIP(), true);
-            MainView.InputType t = view.getInputType();
-            int number = view.getHostOrSubnetNumber();
-            
-            // view.appendTable();
+        view.addEnterButtonListener(e -> {
+            IPAddress ip;
+            try {
+                view.clearTable();
+                
+                ip = new IPAddress(view.getIP());
+                MainView.InputType t = view.getInputType();
+                int number = view.getHostOrSubnetNumber();
+                
+                System.out.println(ip);
+                System.out.println(ip.resetIP());
+                
+                // TODO: add calculation logic
+                // use append method to add to table
+                // view.appendTable();
+                
+                
+            } catch (IPException e1) {
+                JOptionPane.showMessageDialog(null, e1.getErrorMessage(), "error code: " + e1.getErrorCode(), JOptionPane.ERROR_MESSAGE);
+                e1.printStackTrace();
+            }
         });
     }
 }

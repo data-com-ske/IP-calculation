@@ -12,7 +12,9 @@ public enum Error {
     
     IPClassNotFound("IP class not found", 404),
     
-    NotImplement("this method isn't implement yet!", 999);
+    NotImplement("this method isn't implement yet!", 999),
+    
+    UnknownError("don't have any error message", 998);
     
     private String title;
     private int code;
