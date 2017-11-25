@@ -22,14 +22,13 @@ public class UpdatingTest {
     private enum Type {
         STRING,
         STRING_ARRAY,
-        INT_ARRAY;
+        INT_ARRAY
     }
     
     private Object[][] dataString() {
         return new Object[][][]{
                 // case string
                 {
-                        
                         {
                                 Type.STRING, "100.1.0.0"
                         }, {
@@ -55,9 +54,9 @@ public class UpdatingTest {
         }
         }, {
                 {
-                        Type.STRING, "155.0.001.0004"
+                        Type.STRING, "155.0.1.4"
                 }, {
-                Type.STRING, "156.1.002.0005"
+                Type.STRING, "156.1.2.5"
         }
         }
         };
@@ -172,7 +171,7 @@ public class UpdatingTest {
         }
         }, {
                 {
-                        Type.STRING, "234.211.000.00"
+                        Type.STRING, "234.211.0.0"
                 }, {
                 Type.STRING_ARRAY, "234", "231", "1", "10"
         }
@@ -195,9 +194,9 @@ public class UpdatingTest {
     @TestCaseName("{method}({index}): {0}, change to {1}")
     public void test_updating_string_array(Object[]... args) throws IPException {
         IPAddress a = new IPAddress(String.valueOf(args[0][1]), String.valueOf(args[0][2]), String.valueOf(args[0][3]), String.valueOf(args[0][4]));
-        assertEquals(a.toString(), String.format("%s.%s.%s.%s", args[0][1], args[0][2], args[0][3], args[0][4]));
+        assertEquals(a.toString(), String.format("%d.%d.%d.%d", Integer.valueOf(String.valueOf(args[0][1])), Integer.valueOf(String.valueOf(args[0][2])), Integer.valueOf(String.valueOf(args[0][3])), Integer.valueOf(String.valueOf(args[0][4]))));
         a.updateIP(String.valueOf(args[1][1]), String.valueOf(args[1][2]), String.valueOf(args[1][3]), String.valueOf(args[1][4]));
-        assertEquals(a.toString(), String.format("%s.%s.%s.%s", args[1][1], args[1][2], args[1][3], args[1][4]));
+        assertEquals(a.toString(), String.format("%d.%d.%d.%d", Integer.valueOf(String.valueOf(args[1][1])), Integer.valueOf(String.valueOf(args[1][2])), Integer.valueOf(String.valueOf(args[1][3])), Integer.valueOf(String.valueOf(args[1][4]))));
     }
     
     @Test()
@@ -223,7 +222,7 @@ public class UpdatingTest {
                     break;
                 case STRING_ARRAY:
                     a = new IPAddress(String.valueOf(args[0][1]), String.valueOf(args[0][2]), String.valueOf(args[0][3]), String.valueOf(args[0][4]));
-                    assertEquals(a.toString(), String.format("%s.%s.%s.%s", args[0][1], args[0][2], args[0][3], args[0][4]));
+                    assertEquals(a.toString(), String.format("%d.%d.%d.%d", Integer.valueOf(String.valueOf(args[0][1])), Integer.valueOf(String.valueOf(args[0][2])), Integer.valueOf(String.valueOf(args[0][3])), Integer.valueOf(String.valueOf(args[0][4]))));
                     break;
                 case INT_ARRAY:
                     a = new IPAddress(Integer.valueOf(String.valueOf(args[0][1])), Integer.valueOf(String.valueOf(args[0][2])), Integer.valueOf(String.valueOf(args[0][3])), Integer.valueOf(String.valueOf(args[0][4])));
@@ -238,7 +237,7 @@ public class UpdatingTest {
                     break;
                 case STRING_ARRAY:
                     a.updateIP(String.valueOf(args[1][1]), String.valueOf(args[1][2]), String.valueOf(args[1][3]), String.valueOf(args[1][4]));
-                    assertEquals(a.toString(), String.format("%s.%s.%s.%s", args[1][1], args[1][2], args[1][3], args[1][4]));
+                    assertEquals(a.toString(), String.format("%d.%d.%d.%d", Integer.valueOf(String.valueOf(args[1][1])), Integer.valueOf(String.valueOf(args[1][2])), Integer.valueOf(String.valueOf(args[1][3])), Integer.valueOf(String.valueOf(args[1][4]))));
                     break;
                 case INT_ARRAY:
                     a.updateIP(Integer.valueOf(String.valueOf(args[1][1])), Integer.valueOf(String.valueOf(args[1][2])), Integer.valueOf(String.valueOf(args[1][3])), Integer.valueOf(String.valueOf(args[1][4])));
