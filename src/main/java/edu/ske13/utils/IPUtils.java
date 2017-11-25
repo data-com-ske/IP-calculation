@@ -16,7 +16,7 @@ public class IPUtils {
     
     static {
         try {
-            address = new IPAddress("1.0.0.0");
+            address = new IPAddress("1.0.0.0", false);
         } catch (IPException e) {
             // e.printStackTrace();
         }
@@ -58,9 +58,38 @@ public class IPUtils {
         return address.updateIP(arg, arg1, arg2, arg3);
     }
     
+    public static IPAddress newIPAddress(String ipAddress, boolean initialClass) {
+        
+        try {
+            return new IPAddress(ipAddress, initialClass);
+        } catch (IPException e) {
+            return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    public static IPAddress newIPAddress(int first, int second, int third, int fourth) {
+        try {
+            return new IPAddress(first, second, third, fourth);
+        } catch (IPException e) {
+            return null;
+        }
+    }
+    
+    public static IPAddress newIPAddress(String arg, String arg1, String arg2, String arg3) {
+        try {
+            return new IPAddress(arg, arg1, arg2, arg3);
+        } catch (IPException e) {
+            return null;
+        }
+    }
+    
     public static boolean checkIPAddress(String ipAddress) {
         try {
-            return getIPAddress(ipAddress).isCorrect();
+            getIPAddress(ipAddress);
+            return true;
         } catch (IPException e) {
             return false;
         }
@@ -68,7 +97,8 @@ public class IPUtils {
     
     public static boolean checkIPAddress(int first, int second, int third, int fourth) {
         try {
-            return getIPAddress(first, second, third, fourth).isCorrect();
+            getIPAddress(first, second, third, fourth);
+            return true;
         } catch (IPException e) {
             return false;
         }
@@ -76,14 +106,11 @@ public class IPUtils {
     
     public static boolean checkIPAddress(String arg, String arg1, String arg2, String arg3) {
         try {
-            return getIPAddress(arg, arg1, arg2, arg3).isCorrect();
+            getIPAddress(arg, arg1, arg2, arg3);
+            return true;
         } catch (IPException e) {
             return false;
         }
-    }
-    
-    public static boolean checkIPAddress(IPAddress address) {
-        return address.isCorrect();
     }
     
     public static NumberBase getIPBase(IPAddress address, Base b) {

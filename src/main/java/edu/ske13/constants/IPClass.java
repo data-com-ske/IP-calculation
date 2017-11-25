@@ -1,26 +1,30 @@
 package edu.ske13.constants;
 
+import edu.ske13.exception.IPException;
 import edu.ske13.objects.IPAddress;
+import edu.ske13.objects.NumberBase;
 import edu.ske13.utils.IPUtils;
+
+import static edu.ske13.exception.Error.IPClassNotFound;
 
 /**
  * @author kamontat
  * @version 1.0
  * @since Fri 10/Nov/2017 - 19:53
  */
-public enum IPClass {
-    ClassA(IPUtils.forceCreateIPAddress("255.0.0.0")),
-    ClassB(IPUtils.forceCreateIPAddress("255.255.0.0")),
-    ClassC(IPUtils.forceCreateIPAddress("255.255.255.0")),
-    ClassD(null),
-    ClassE(null),
-    PrivateClassA(IPUtils.forceCreateIPAddress("255.0.0.0")),
-    PrivateClassB(IPUtils.forceCreateIPAddress("255.240.0.0")),
-    PrivateClassC(IPUtils.forceCreateIPAddress("255.255.0.0"));
+public enum IPClass implements IPClassable {
+    ClassA(1, 126, IPUtils.newIPAddress("255.0.0.0", false)),
+    ClassB(128, 191, IPUtils.newIPAddress("255.255.0.0", false)),
+    ClassC(192, 223, IPUtils.newIPAddress("255.255.255.0", false)),
+    ClassD(224, 239, null),
+    ClassE(240, 254, null);
     
+    private int start, end;
     private IPAddress subnetMask;
     
-    IPClass(IPAddress subnetMask) {
+    IPClass(int start, int end, IPAddress subnetMask) {
+        this.start = start;
+        this.end = end;
         this.subnetMask = subnetMask;
     }
     
@@ -28,8 +32,24 @@ public enum IPClass {
         return subnetMask;
     }
     
-    public boolean isPrivate() {
-        // return this.equals(PrivateClassA) || this.equals(PrivateClassB) || this.equals(PrivateClassC);
-        return this.name().toLowerCase().contains("private");
+    public boolean isPrivateClass() {
+        return false;
+    }
+    
+    @Override
+    public boolean isExtraClass() {
+        return false;
+    }
+    
+    
+    @Override
+    public IPClass getIPClassImp(IPAddress ipAddress) throws IPException {
+        NumberBase b = ipAddress.getIPIndex(0);
+        for (IPClass c : IPClass.values()) {
+            if (b.isBetween(NumberBase.Utils.toNumberBase(c.start), NumberBase.Utils.toNumberBase(c.end))) {
+                return c;
+            }
+        }
+        throw new IPException(IPClassNotFound);
     }
 }

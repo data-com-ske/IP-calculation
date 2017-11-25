@@ -9,8 +9,6 @@ import junitparams.naming.TestCaseName;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 /**
@@ -26,7 +24,6 @@ public class ValidateTest {
                 {"2.1.0.0", true},
                 {"100.1.0.0", true},
                 {"10.1.1.0", true},
-                {"103.132.113.312", true},
                 {"123.123.123.123", true},
                 {"123.123.123.123", true},
                 {"245.255.0.1", true},
@@ -42,7 +39,7 @@ public class ValidateTest {
                 {"0.0.1.0", false},
                 {"0.255.255.255", false},
                 // case incomplete ip
-                {"2.1.0", false},
+                {"2.1.0", true},
                 {"2.1.0.", false},
                 {"2.1..0", false},
                 {"2..10.", false},
@@ -54,7 +51,7 @@ public class ValidateTest {
                 {".127.1..0", false},
                 {".", false},
                 {".1.", false},
-                {"", false},
+                {"", true},
                 // case invalid character
                 {"123,123,123,123", false},
                 {"123.123.123.123$", false},
@@ -74,19 +71,22 @@ public class ValidateTest {
                 {"256.255.255.255", false},
                 {"255.255.256.257", false},
                 {"258.257.256.255", false},
+                {"103.132.113.312", false},
         };
     }
     
     @Test()
     @Parameters(method = "data")
     @TestCaseName("{method}({index}): ip {0}, correction is {1}")
-    public void test_correctness(String ip, Boolean expected) throws IPException {
+    public void test_correctness(String ip, Boolean expected) {
         try {
             IPAddress a = new IPAddress(String.valueOf(ip));
-            if (expected) assertTrue(a.isCorrect());
-            else assertFalse(a.isCorrect());
+            System.out.println(a.toString());
+            if (!expected) fail(String.format("this %s should be wrong!", ip));
         } catch (ClassCastException | NotImplementedException e) {
             fail(e.getMessage());
+        } catch (IPException e) {
+            if (expected) fail(String.format("this %s should be correct!", ip));
         }
     }
 }

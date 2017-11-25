@@ -27,222 +27,163 @@ public class UpdatingTest {
     
     private Object[][] dataString() {
         return new Object[][][]{
-            // case string
-            {
-                
+                // case string
                 {
-                    Type.STRING,
-                    "100.1.0.0"
-                }, {
-                    Type.STRING,
-                    "100.1.0.1"
+                        
+                        {
+                                Type.STRING, "100.1.0.0"
+                        }, {
+                        Type.STRING, "100.1.0.1"
                 }
-            },
-            {
+                }, {
                 {
-                    Type.STRING,
-                    "10.1.1.0"
+                        Type.STRING, "10.1.1.0"
                 }, {
-                    Type.STRING,
-                    "100.100.100.100"
-                }
-            },
-            {
+                Type.STRING, "100.100.100.100"
+        }
+        }, {
                 {
-                    Type.STRING,
-                    "321.132.213.221"
+                        Type.STRING, "255.132.213.221"
                 }, {
-                    Type.STRING,
-                    "112.312.231.132"
-                }
-            },
-            {
+                Type.STRING, "112.255.231.132"
+        }
+        }, {
                 {
-                    Type.STRING,
-                    "245.255.0.1"
+                        Type.STRING, "245.255.0.1"
                 }, {
-                    Type.STRING,
-                    "255.255.255.255"
-                }
-            },
-            {
+                Type.STRING, "255.255.255.255"
+        }
+        }, {
                 {
-                    Type.STRING,
-                    "155.0.001.0004"
+                        Type.STRING, "155.0.001.0004"
                 }, {
-                    Type.STRING,
-                    "156.1.002.0005"
-                }
-            },
+                Type.STRING, "156.1.002.0005"
+        }
+        }
         };
     }
     
     private Object[][] dataStringArray() {
         return new Object[][][]{
-            // case string[]
-            {
+                // case string[]
                 {
-                    Type.STRING_ARRAY,
-                    "100","1","0","0"
-                }, {
-                    Type.STRING_ARRAY,
-                    "100","1","0","1"
+                        {
+                                Type.STRING_ARRAY, "100", "1", "0", "0"
+                        }, {
+                        Type.STRING_ARRAY, "100", "1", "0", "1"
                 }
-            },
-            {
+                }, {
                 {
-                    Type.STRING_ARRAY,
-                    "10","1","1","0"
+                        Type.STRING_ARRAY, "10", "1", "1", "0"
                 }, {
-                    Type.STRING_ARRAY,
-                    "100","100","100","100"
-                }
-            },
-            {
+                Type.STRING_ARRAY, "100", "100", "100", "100"
+        }
+        }, {
                 {
-                    Type.STRING_ARRAY,
-                    "321","132","213","221"
+                        Type.STRING_ARRAY, "255", "132", "213", "221"
                 }, {
-                    Type.STRING_ARRAY,
-                    "112","312","231","132"
-                }
-            },
-            {
+                Type.STRING_ARRAY, "112", "255", "231", "132"
+        }
+        }, {
                 {
-                    Type.STRING_ARRAY,
-                    "245","255","0","1"
+                        Type.STRING_ARRAY, "245", "255", "0", "1"
                 }, {
-                    Type.STRING_ARRAY,
-                    "255","255","255","255"
-                }
-            },
-            {
+                Type.STRING_ARRAY, "255", "255", "255", "255"
+        }
+        }, {
                 {
-                    Type.STRING_ARRAY,
-                    "155","0","001","0004"
+                        Type.STRING_ARRAY, "155", "0", "001", "0004"
                 }, {
-                    Type.STRING_ARRAY,
-                    "156","1","002","0005"
-                }
-            },
+                Type.STRING_ARRAY, "156", "1", "002", "0005"
+        }
+        },
         };
     }
     
     private Object[][] dataIntArray() {
         return new Object[][][]{
-            // case int[]
-            {
+                // case int[]
                 {
-                    Type.INT_ARRAY,
-                    100,1,0,0
-                }, {
-                    Type.INT_ARRAY,
-                    100,1,0,1
+                        {
+                                Type.INT_ARRAY, 100, 1, 0, 0
+                        }, {
+                        Type.INT_ARRAY, 100, 1, 0, 1
                 }
-            },
-            {
+                }, {
                 {
-                    Type.INT_ARRAY,
-                    10,1,1,0
+                        Type.INT_ARRAY, 10, 1, 1, 0
                 }, {
-                    Type.INT_ARRAY,
-                    100,100,100,100
-                }
-            },
-            {
+                Type.INT_ARRAY, 100, 100, 100, 100
+        }
+        }, {
                 {
-                    Type.INT_ARRAY,
-                    321,132,213,221
+                        Type.INT_ARRAY, 255, 132, 213, 221
                 }, {
-                    Type.INT_ARRAY,
-                    112,312,231,132
-                }
-            },
-            {
+                Type.INT_ARRAY, 112, 255, 231, 132
+        }
+        }, {
                 {
-                    Type.INT_ARRAY,
-                    245,255,0,1
+                        Type.INT_ARRAY, 245, 255, 0, 1
                 }, {
-                    Type.INT_ARRAY,
-                    255,255,255,255
-                }
-            },
-            {
+                Type.INT_ARRAY, 255, 255, 255, 255
+        }
+        }, {
                 {
-                    Type.INT_ARRAY,
-                    155,0,001,0004
+                        Type.INT_ARRAY, 155, 0, 001, 0004
                 }, {
-                    Type.INT_ARRAY,
-                    156,1,002,0005
-                }
-            },
+                Type.INT_ARRAY, 156, 1, 002, 0005
+        }
+        },
         };
     }
     
     private Object[][] dataMix() {
         return new Object[][][]{
-            // case int[]
-            {
+                // case int[]
                 {
-                    Type.STRING_ARRAY,
-                    "155","0","001","0004"
-                }, {
-                    Type.INT_ARRAY,
-                    100,1,0,1
+                        {
+                                Type.STRING_ARRAY, "155", "0", "001", "0004"
+                        }, {
+                        Type.INT_ARRAY, 100, 1, 0, 1
                 }
-            },
-            {
+                }, {
                 {
-                    Type.STRING,
-                    "100.100.100.100"
+                        Type.STRING, "100.100.100.100"
                 }, {
-                    Type.INT_ARRAY,
-                    100,100,100,100
-                }
-            },
-            {
+                Type.INT_ARRAY, 100, 100, 100, 100
+        }
+        }, {
                 {
-                    Type.STRING_ARRAY,
-                    "155","0","001","0004"
+                        Type.STRING_ARRAY, "155", "0", "001", "0004"
                 }, {
-                    Type.STRING,
-                    "100.123.0.0"
-                }
-            },
-            {
+                Type.STRING, "100.123.0.0"
+        }
+        }, {
                 {
-                    Type.INT_ARRAY,
-                    245,255,0,1
+                        Type.INT_ARRAY, 245, 255, 0, 1
                 }, {
-                    Type.STRING_ARRAY,
-                    "155","0","001","0004"
-                }
-            },
-            {
+                Type.STRING_ARRAY, "155", "0", "001", "0004"
+        }
+        }, {
                 {
-                    Type.INT_ARRAY,
-                    155,123,112,1
+                        Type.INT_ARRAY, 155, 123, 112, 1
                 }, {
-                    Type.STRING,
-                    "155.123.111.0"
-                }
-            },
-            {
+                Type.STRING, "155.123.111.0"
+        }
+        }, {
                 {
-                    Type.STRING,
-                    "234.211.000.00"
+                        Type.STRING, "234.211.000.00"
                 }, {
-                    Type.STRING_ARRAY,
-                    "234","231","1","10"
-                }
-            },
+                Type.STRING_ARRAY, "234", "231", "1", "10"
+        }
+        },
         };
     }
     
     @Test()
     @Parameters(method = "dataString")
     @TestCaseName("{method}({index}): {0}, change to {1}")
-    public void test_updating_string(String[]... args) throws IPException {
+    public void test_updating_string(Object[]... args) throws IPException {
         IPAddress a = new IPAddress(String.valueOf(args[0][1]));
         assertEquals(a.toString(), args[0][1]);
         a.updateIP(String.valueOf(args[1][1]));
@@ -253,40 +194,20 @@ public class UpdatingTest {
     @Parameters(method = "dataStringArray")
     @TestCaseName("{method}({index}): {0}, change to {1}")
     public void test_updating_string_array(Object[]... args) throws IPException {
-        IPAddress a = new IPAddress(
-            String.valueOf(args[0][1]),
-            String.valueOf(args[0][2]),
-            String.valueOf(args[0][3]),
-            String.valueOf(args[0][4])
-        );
-        assertEquals(a.toString(), String.format("%s.%s.%s.%s",args[0][1],args[0][2],args[0][3],args[0][4]));
-        a.updateIP(
-            String.valueOf(args[1][1]),
-            String.valueOf(args[1][2]),
-            String.valueOf(args[1][3]),
-            String.valueOf(args[1][4])
-        );
-        assertEquals(a.toString(), String.format("%s.%s.%s.%s",args[1][1],args[1][2],args[1][3],args[1][4]));
+        IPAddress a = new IPAddress(String.valueOf(args[0][1]), String.valueOf(args[0][2]), String.valueOf(args[0][3]), String.valueOf(args[0][4]));
+        assertEquals(a.toString(), String.format("%s.%s.%s.%s", args[0][1], args[0][2], args[0][3], args[0][4]));
+        a.updateIP(String.valueOf(args[1][1]), String.valueOf(args[1][2]), String.valueOf(args[1][3]), String.valueOf(args[1][4]));
+        assertEquals(a.toString(), String.format("%s.%s.%s.%s", args[1][1], args[1][2], args[1][3], args[1][4]));
     }
     
     @Test()
     @Parameters(method = "dataIntArray")
     @TestCaseName("{method}({index}): {0}, change to {1}")
     public void test_updating_int_array(Object[]... args) throws IPException {
-        IPAddress a = new IPAddress(
-            Integer.valueOf(String.valueOf(args[0][1])),
-            Integer.valueOf(String.valueOf(args[0][2])),
-            Integer.valueOf(String.valueOf(args[0][3])),
-            Integer.valueOf(String.valueOf(args[0][4]))
-        );
-        assertEquals(a.toString(), String.format("%s.%s.%s.%s",args[0][1],args[0][2],args[0][3],args[0][4]));
-        a.updateIP(
-            Integer.valueOf(String.valueOf(args[1][1])),
-            Integer.valueOf(String.valueOf(args[1][2])),
-            Integer.valueOf(String.valueOf(args[1][3])),
-            Integer.valueOf(String.valueOf(args[1][4]))
-        );
-        assertEquals(a.toString(), String.format("%s.%s.%s.%s",args[1][1],args[1][2],args[1][3],args[1][4]));
+        IPAddress a = new IPAddress(Integer.valueOf(String.valueOf(args[0][1])), Integer.valueOf(String.valueOf(args[0][2])), Integer.valueOf(String.valueOf(args[0][3])), Integer.valueOf(String.valueOf(args[0][4])));
+        assertEquals(a.toString(), String.format("%s.%s.%s.%s", args[0][1], args[0][2], args[0][3], args[0][4]));
+        a.updateIP(Integer.valueOf(String.valueOf(args[1][1])), Integer.valueOf(String.valueOf(args[1][2])), Integer.valueOf(String.valueOf(args[1][3])), Integer.valueOf(String.valueOf(args[1][4])));
+        assertEquals(a.toString(), String.format("%s.%s.%s.%s", args[1][1], args[1][2], args[1][3], args[1][4]));
     }
     
     @Test()
@@ -301,22 +222,12 @@ public class UpdatingTest {
                     assertEquals(a.toString(), args[0][1]);
                     break;
                 case STRING_ARRAY:
-                    a = new IPAddress(
-                            String.valueOf(args[0][1]),
-                            String.valueOf(args[0][2]),
-                            String.valueOf(args[0][3]),
-                            String.valueOf(args[0][4])
-                    );
-                    assertEquals(a.toString(), String.format("%s.%s.%s.%s",args[0][1],args[0][2],args[0][3],args[0][4]));
+                    a = new IPAddress(String.valueOf(args[0][1]), String.valueOf(args[0][2]), String.valueOf(args[0][3]), String.valueOf(args[0][4]));
+                    assertEquals(a.toString(), String.format("%s.%s.%s.%s", args[0][1], args[0][2], args[0][3], args[0][4]));
                     break;
                 case INT_ARRAY:
-                    a = new IPAddress(
-                            Integer.valueOf(String.valueOf(args[0][1])),
-                            Integer.valueOf(String.valueOf(args[0][2])),
-                            Integer.valueOf(String.valueOf(args[0][3])),
-                            Integer.valueOf(String.valueOf(args[0][4]))
-                    );
-                    assertEquals(a.toString(), String.format("%s.%s.%s.%s",args[0][1],args[0][2],args[0][3],args[0][4]));
+                    a = new IPAddress(Integer.valueOf(String.valueOf(args[0][1])), Integer.valueOf(String.valueOf(args[0][2])), Integer.valueOf(String.valueOf(args[0][3])), Integer.valueOf(String.valueOf(args[0][4])));
+                    assertEquals(a.toString(), String.format("%s.%s.%s.%s", args[0][1], args[0][2], args[0][3], args[0][4]));
                     break;
             }
             
@@ -326,22 +237,12 @@ public class UpdatingTest {
                     assertEquals(a.toString(), args[1][1]);
                     break;
                 case STRING_ARRAY:
-                    a.updateIP(
-                            String.valueOf(args[1][1]),
-                            String.valueOf(args[1][2]),
-                            String.valueOf(args[1][3]),
-                            String.valueOf(args[1][4])
-                    );
-                    assertEquals(a.toString(), String.format("%s.%s.%s.%s",args[1][1],args[1][2],args[1][3],args[1][4]));
+                    a.updateIP(String.valueOf(args[1][1]), String.valueOf(args[1][2]), String.valueOf(args[1][3]), String.valueOf(args[1][4]));
+                    assertEquals(a.toString(), String.format("%s.%s.%s.%s", args[1][1], args[1][2], args[1][3], args[1][4]));
                     break;
                 case INT_ARRAY:
-                    a.updateIP(
-                            Integer.valueOf(String.valueOf(args[1][1])),
-                            Integer.valueOf(String.valueOf(args[1][2])),
-                            Integer.valueOf(String.valueOf(args[1][3])),
-                            Integer.valueOf(String.valueOf(args[1][4]))
-                    );
-                    assertEquals(a.toString(), String.format("%s.%s.%s.%s",args[1][1],args[1][2],args[1][3],args[1][4]));
+                    a.updateIP(Integer.valueOf(String.valueOf(args[1][1])), Integer.valueOf(String.valueOf(args[1][2])), Integer.valueOf(String.valueOf(args[1][3])), Integer.valueOf(String.valueOf(args[1][4])));
+                    assertEquals(a.toString(), String.format("%s.%s.%s.%s", args[1][1], args[1][2], args[1][3], args[1][4]));
                     break;
             }
         } catch (ClassCastException | NotImplementedException e) {
