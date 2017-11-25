@@ -146,6 +146,14 @@ public class NumberBase extends Number implements Comparable<NumberBase>, Operab
     }
     
     @Override
+    public boolean isBetween(NumberBase numberBase, NumberBase numberBase2, Base b) {
+        double max = Math.max(numberBase.doubleValue(), numberBase2.doubleValue());
+        double min = Math.min(numberBase.doubleValue(), numberBase2.doubleValue());
+        
+        return doubleValue() >= min && doubleValue() <= max;
+    }
+    
+    @Override
     public NumberBase and(NumberBase numberBase) {
         return and(numberBase, getBase());
     }
@@ -188,5 +196,30 @@ public class NumberBase extends Number implements Comparable<NumberBase>, Operab
     @Override
     public NumberBase minus(NumberBase numberBase) {
         return minus(numberBase, getBase());
+    }
+    
+    @Override
+    public boolean isBetween(NumberBase numberBase, NumberBase numberBase2) {
+        return isBetween(numberBase, numberBase2, getBase());
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof NumberBase)) return false;
+        
+        NumberBase that = (NumberBase) o;
+        return number.equals(that.number);
+    }
+    
+    @Override
+    public int hashCode() {
+        return number.hashCode();
+    }
+    
+    public static class Utils {
+        public static NumberBase toNumberBase(int i) {
+            return new NumberBase(i);
+        }
     }
 }

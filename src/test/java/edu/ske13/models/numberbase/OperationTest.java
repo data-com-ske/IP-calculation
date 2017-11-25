@@ -9,8 +9,6 @@ import junitparams.naming.TestCaseName;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.util.concurrent.Callable;
-
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -21,7 +19,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(JUnitParamsRunner.class)
 public class OperationTest {
     
-    public static Object[] binaryData(String... expected) {
+    private static Object[] binaryData(String... expected) {
         if (expected.length != 4) throw new RuntimeException("wrong initial test");
         return new Object[]{
                 new Object[]{"1001", "0110", expected[0]},
@@ -31,7 +29,7 @@ public class OperationTest {
         };
     }
     
-    public static Object[] decimalData(String... expected) {
+    private static Object[] decimalData(String... expected) {
         if (expected.length != 4) throw new RuntimeException("wrong initial test");
         return new Object[]{
                 new Object[]{"24", "31", expected[0]},
@@ -41,51 +39,51 @@ public class OperationTest {
         };
     }
     
-    public static Object[] b2bAndTestCase() {
+    private static Object[] b2bAndTestCase() {
         return binaryData("0", "11", "11", "101100010000");
     }
     
-    public static Object[] b2bOrTestCase() {
+    private static Object[] b2bOrTestCase() {
         return binaryData("1111", "11", "11110111", "111111011111");
     }
     
-    public static Object[] b2bXorTestCase() {
+    private static Object[] b2bXorTestCase() {
         return binaryData("1111", "0", "11110100", "10011001111");
     }
     
-    public static Object[] b2dAndTestCase() {
+    private static Object[] b2dAndTestCase() {
         return binaryData("0", "3", "3", "2832");
     }
     
-    public static Object[] b2dOrTestCase() {
+    private static Object[] b2dOrTestCase() {
         return binaryData("15", "3", "247", "4063");
     }
     
-    public static Object[] b2dXorTestCase() {
+    private static Object[] b2dXorTestCase() {
         return binaryData("15", "0", "244", "1231");
     }
     
-    public static Object[] d2dAndTestCase() {
+    private static Object[] d2dAndTestCase() {
         return decimalData("24", "1", "166", "4");
     }
     
-    public static Object[] d2dOrTestCase() {
+    private static Object[] d2dOrTestCase() {
         return decimalData("31", "5", "231", "958");
     }
     
-    public static Object[] d2dXorTestCase() {
+    private static Object[] d2dXorTestCase() {
         return decimalData("7", "4", "65", "954");
     }
     
-    public static Object[] d2bAndTestCase() {
+    private static Object[] d2bAndTestCase() {
         return decimalData("11000", "1", "10100110", "100");
     }
     
-    public static Object[] d2bOrTestCase() {
+    private static Object[] d2bOrTestCase() {
         return decimalData("11111", "101", "11100111", "1110111110");
     }
     
-    public static Object[] d2bXorTestCase() {
+    private static Object[] d2bXorTestCase() {
         return decimalData("111", "100", "1000001", "1110111010");
     }
     
@@ -177,17 +175,11 @@ public class OperationTest {
      * test utils
      *
      * @param number1
-     *         first number
      * @param base1
-     *         first base
      * @param number2
-     *         second number
      * @param base2
-     *         second base
      * @param result
-     *         result number
-     * @param baseResult
-     *         result base
+     * @param op
      */
     public static void test(String number1, Base base1, String number2, Base base2, String result, Operation<NumberBase> op) {
         NumberBase b1 = new NumberBase(number1, base1);
@@ -196,7 +188,7 @@ public class OperationTest {
         assertEquals(result, op.calculate(b1, b2).getValue());
     }
     
-    interface Operation<T> {
+    private interface Operation<T> {
         T calculate(T t1, T t2);
     }
 }
