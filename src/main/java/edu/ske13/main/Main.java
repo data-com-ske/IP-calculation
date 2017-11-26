@@ -1,8 +1,8 @@
 package edu.ske13.main;
 
 import edu.ske13.exception.IPException;
+import edu.ske13.objects.IPAddress;
 
-import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 public class Main {
@@ -14,11 +14,10 @@ public class Main {
     
     public static void main(String[] args) throws UnknownHostException, IPException {
         // String google = "172.217.7.206";
-        // String raw = "127.123.123.123";
+        String raw = "192.168.123.123";
         
-        // IPAddress a = new IPAddress(raw);
-        // System.out.println(a.getIPClass());
+        IPAddress a = new IPAddress(raw);
         
-        System.out.println(InetAddress.getByName("0.0.0.1"));
+        System.out.println(a.toBinaryLong());
     }
 }

@@ -86,6 +86,24 @@ public class IPAddress {
         return numbers.toArray(new NumberBase[4]);
     }
     
+    public String toBinaryLong() {
+        return toBinary().replaceAll("\\.", "");
+    }
+    
+    public String toBinary() {
+        StringBuilder sb = new StringBuilder();
+        for (NumberBase b : getIPs()) {
+            System.out.println(b);
+            int n = 8 - b.binaryValue().length();
+            StringBuilder s = new StringBuilder();
+            for (int i = 0; i < n; i++) {
+                s.append("0");
+            }
+            sb.append(s.toString()).append(b.binaryValue()).append(".");
+        }
+        return sb.deleteCharAt(sb.length() - 1).toString();
+    }
+    
     public boolean isSubnetMask() {
         return !Objects.isNull(getIPClass()) && getIPClass().equals(IPExtraClass.Mask);
     }

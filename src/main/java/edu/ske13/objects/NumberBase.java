@@ -72,6 +72,10 @@ public class NumberBase extends Number implements Comparable<NumberBase>, Operab
         return (double) intValue();
     }
     
+    public String binaryValue() {
+        return createNew(Base.Binary).number;
+    }
+    
     /**
      * get number of input base
      *
