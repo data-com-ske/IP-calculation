@@ -80,6 +80,23 @@ public class IPUtils {
         }
     }
     
+    public static IPAddress toIPAddressBinary(String ip, boolean dot) throws IPException {
+        if (dot) {
+            String[] s = ip.split("\\.");
+            return new IPAddress(new NumberBase(s[0], Base.Binary).intValue(), new NumberBase(s[1], Base.Binary).intValue(), new NumberBase(s[2], Base.Binary).intValue(), new NumberBase(s[3], Base.Binary).intValue());
+        } else {
+            if (ip.length() < 32) {
+                StringBuilder ipBuilder = new StringBuilder(ip);
+                for (int i = 0; i < 32 - ipBuilder.length(); i++) {
+                    ipBuilder.insert(0, "0");
+                }
+                ip = ipBuilder.toString();
+            }
+            String s = String.format("%s.%s.%s.%s", ip.substring(0, 8), ip.substring(8, 16), ip.substring(16, 24), ip.substring(24, 32));
+            return toIPAddressBinary(s, true);
+        }
+    }
+    
     public static IPAddress newIPAddress(String arg, String arg1, String arg2, String arg3) {
         try {
             return new IPAddress(arg, arg1, arg2, arg3);

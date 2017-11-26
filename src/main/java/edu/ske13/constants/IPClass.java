@@ -21,11 +21,16 @@ public enum IPClass implements IPClassable {
     
     private int start, end;
     private IPAddress subnetMask;
+    private int bit;
     
     IPClass(int start, int end, IPAddress subnetMask) {
         this.start = start;
         this.end = end;
         this.subnetMask = subnetMask;
+        this.bit = 0;
+        if (subnetMask != null) for (NumberBase b : subnetMask.getIPs()) {
+            if (b.intValue() == 0) this.bit += 8;
+        }
     }
     
     public IPAddress getDefaultSubnetMask() {
@@ -39,6 +44,11 @@ public enum IPClass implements IPClassable {
     @Override
     public boolean isExtraClass() {
         return false;
+    }
+    
+    @Override
+    public int getClassBit() {
+        return bit;
     }
     
     

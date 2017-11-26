@@ -2,6 +2,7 @@ package edu.ske13.constants;
 
 import edu.ske13.exception.IPException;
 import edu.ske13.objects.IPAddress;
+import edu.ske13.objects.NumberBase;
 import edu.ske13.utils.IPUtils;
 
 import static edu.ske13.exception.Error.IPClassNotFound;
@@ -18,11 +19,17 @@ public enum IPPrivateClass implements IPClassable {
     
     private IPAddress start, end;
     private IPAddress subnetMask;
+    private int bit;
     
     IPPrivateClass(IPAddress start, IPAddress end, IPAddress subnetMask) {
         this.start = start;
         this.end = end;
         this.subnetMask = subnetMask;
+        
+        this.bit = 0;
+        for (NumberBase b : subnetMask.getIPs()) {
+            if (b.intValue() == 0) this.bit += 8;
+        }
     }
     
     public IPAddress getDefaultSubnetMask() {
@@ -37,6 +44,12 @@ public enum IPPrivateClass implements IPClassable {
     public boolean isExtraClass() {
         return false;
     }
+    
+    @Override
+    public int getClassBit() {
+        return bit;
+    }
+    
     
     @Override
     public IPPrivateClass getIPClassImp(IPAddress ipAddress) throws IPException {

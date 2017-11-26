@@ -19,5 +19,7 @@ public interface IPClassable {
         return t.getIPClassImp(address);
     }
     
+    int getClassBit();
+    
     <T extends IPClassable> T getIPClassImp(IPAddress ipAddress) throws IPException;
 }

@@ -8,6 +8,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.util.*;
 
 import static javax.swing.SwingUtilities.invokeLater;
 
@@ -17,6 +18,16 @@ public class MainView extends JFrame {
     public enum InputType {
         SUBNET,
         HOST;
+        
+        public static InputType other(InputType t) {
+            switch (t) {
+                case HOST:
+                    return SUBNET;
+                case SUBNET:
+                    return HOST;
+            }
+            return null;
+        }
     }
     
     private JTextField ip1;
@@ -24,6 +35,8 @@ public class MainView extends JFrame {
     private JTextField ip3;
     private JTextField ip4;
     private JTextField sh;
+    
+    private DefaultTableModel tm;
     private JTable table;
     
     private JComboBox<InputType> comboBox;
@@ -94,7 +107,7 @@ public class MainView extends JFrame {
     }
     
     InputType getInputType() {
-        return comboBox.getPrototypeDisplayValue();
+        return (InputType) comboBox.getSelectedItem();
     }
     
     String getIP() {
@@ -121,20 +134,18 @@ public class MainView extends JFrame {
         this.sh_number = number;
     }
     
-    void appendTable(String[][] data) {
+    void appendTable(ArrayList<ArrayList<String>> data) {
         // row number 0 contains texts(which are header of each column)
-        for (int i = 1; i < table.getRowCount(); i++) {
-            for (int j = 0; j < table.getColumnCount(); j++) {
-                table.setValueAt(data[i - 1][j], i, j);
-            }
+        for (ArrayList<String> aData : data) {
+            tm.addRow(aData.toArray());
         }
     }
     
     void clearTable() {
-        for (int i = 1; i < table.getRowCount(); i++) {
-            for (int j = 0; j < table.getColumnCount(); j++) {
-                table.setValueAt("", i, j);
-            }
+        int rowCount = tm.getRowCount();
+        //Remove rows one by one from the end of the table
+        for (int i = rowCount - 1; i >= 0; i--) {
+            tm.removeRow(i);
         }
     }
     
@@ -178,20 +189,11 @@ public class MainView extends JFrame {
         containerC.setLayout(layout3);
         
         table = new JTable();
-        table.setModel(new DefaultTableModel(new Object[][]{
-                {"Subnet", "Subnet ID", "1st Add", "Last Add", "Broadcast"},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-        }, new String[]{
+        tm = new DefaultTableModel(new Object[]{
                 "Subnet", "Subnet ID", "1st Add", "Last Add", "Broadcast"
-        }));
-        containerC.add(table);
+        }, 0);
+        table.setModel(tm);
+        containerC.add(new JScrollPane(table));
         
         JLabel lblIp = new JLabel("IP: ");
         lblIp.setBounds(35, 28, 46, 14);

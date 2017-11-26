@@ -81,7 +81,6 @@ public class ValidateTest {
     public void test_correctness(String ip, Boolean expected) {
         try {
             IPAddress a = new IPAddress(String.valueOf(ip));
-            System.out.println(a.toString());
             if (!expected) fail(String.format("this %s should be wrong!", ip));
         } catch (ClassCastException | NotImplementedException e) {
             fail(e.getMessage());

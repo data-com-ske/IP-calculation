@@ -92,36 +92,36 @@ public class NumberBase extends Number implements Comparable<NumberBase>, Operab
      */
     @Override
     public String toString() {
-        return number + " with " + getBase();
+        return number;
     }
     
     private static String convert(String number1, Base b1, Base b2) {
-        int num1 = Integer.parseUnsignedInt(number1, b1.getBase());
-        return Integer.toString(num1, b2.getBase());
+        long num1 = Long.parseUnsignedLong(number1, b1.getBase());
+        return Long.toString(num1, b2.getBase());
     }
     
-    private static String convertDecimal(int number, Base b1) {
+    private static String convertDecimal(long number, Base b1) {
         return convert(String.valueOf(number), Base.Decimal, b1);
     }
     
     @Override
     public NumberBase and(NumberBase numberBase, Base b) {
-        return new NumberBase(convertDecimal(intValue() & numberBase.intValue(), b), b);
+        return new NumberBase(convertDecimal(longValue() & numberBase.longValue(), b), b);
     }
     
     @Override
     public NumberBase or(NumberBase numberBase, Base b) {
-        return new NumberBase(convertDecimal(intValue() | numberBase.intValue(), b), b);
+        return new NumberBase(convertDecimal(longValue() | numberBase.longValue(), b), b);
     }
     
     @Override
     public NumberBase xor(NumberBase numberBase, Base b) {
-        return new NumberBase(convertDecimal(intValue() ^ numberBase.intValue(), b), b);
+        return new NumberBase(convertDecimal(longValue() ^ numberBase.longValue(), b), b);
     }
     
     @Override
     public NumberBase not(Base b) {
-        return new NumberBase(convertDecimal(~intValue(), b), b);
+        return new NumberBase(convertDecimal(~longValue(), b), b);
     }
     
     @Override
@@ -141,12 +141,12 @@ public class NumberBase extends Number implements Comparable<NumberBase>, Operab
     
     @Override
     public NumberBase add(NumberBase numberBase, Base b) {
-        return new NumberBase(convertDecimal(intValue() + numberBase.intValue(), b), b);
+        return new NumberBase(convertDecimal(longValue() + numberBase.longValue(), b), b);
     }
     
     @Override
     public NumberBase minus(NumberBase numberBase, Base b) {
-        return new NumberBase(convertDecimal(intValue() - numberBase.intValue(), b), b);
+        return new NumberBase(convertDecimal(longValue() - numberBase.longValue(), b), b);
     }
     
     @Override

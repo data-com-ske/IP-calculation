@@ -17,7 +17,7 @@ public class Main {
         String raw = "192.168.123.123";
         
         IPAddress a = new IPAddress(raw);
-        
+    
         System.out.println(a.toBinaryLong());
     }
 }

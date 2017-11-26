@@ -37,6 +37,12 @@ public enum IPExtraClass implements IPClassable {
     }
     
     @Override
+    public int getClassBit() {
+        return 0;
+    }
+    
+    
+    @Override
     public IPExtraClass getIPClassImp(IPAddress ipAddress) throws IPException {
         for (IPExtraClass c : IPExtraClass.values()) {
             if (ipAddress.getIPIndex(0).intValue() == c.start) return c;

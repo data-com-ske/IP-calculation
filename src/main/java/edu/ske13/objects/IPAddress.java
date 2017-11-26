@@ -82,6 +82,16 @@ public class IPAddress {
         return numbers.get(index);
     }
     
+    public void setIPIndex(int index, NumberBase b) {
+        numbers.set(index, b);
+        updateRaw();
+    }
+    
+    public IPAddress nextIP() {
+        setIPIndex(3, getIPIndex(3).add(NumberBase.Utils.toNumberBase(1)));
+        return this;
+    }
+    
     public NumberBase[] getIPs() {
         return numbers.toArray(new NumberBase[4]);
     }
@@ -93,7 +103,6 @@ public class IPAddress {
     public String toBinary() {
         StringBuilder sb = new StringBuilder();
         for (NumberBase b : getIPs()) {
-            System.out.println(b);
             int n = 8 - b.binaryValue().length();
             StringBuilder s = new StringBuilder();
             for (int i = 0; i < n; i++) {
@@ -146,6 +155,10 @@ public class IPAddress {
         if (getIPIndex(0).intValue() == 0 && (getIPIndex(1).intValue() != 0 || getIPIndex(2).intValue() != 0 || getIPIndex(3).intValue() != 0))
             throw new IPException(InvalidIPException);
         
+        this.raw = toString();
+    }
+    
+    private void updateRaw() {
         this.raw = toString();
     }
     
