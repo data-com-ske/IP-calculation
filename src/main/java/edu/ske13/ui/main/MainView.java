@@ -1,6 +1,8 @@
 package edu.ske13.ui.main;
 
 import edu.ske13.annotations.Nullable;
+import edu.ske13.exception.Error;
+import edu.ske13.exception.IPException;
 import edu.ske13.exception.NotImplementedException;
 import edu.ske13.utils.ui.Display;
 
@@ -27,6 +29,11 @@ public class MainView extends JFrame {
                     return HOST;
             }
             return null;
+        }
+        
+        @Override
+        public String toString() {
+            return name().toLowerCase(Locale.ENGLISH);
         }
     }
     
@@ -119,10 +126,15 @@ public class MainView extends JFrame {
         return ip;
     }
     
-    Integer getHostOrSubnetNumber() {
+    Integer getHostOrSubnetNumber() throws IPException {
         String value = sh.getText();
         if (value.equals("")) return 0;
-        this.sh_number = Integer.parseInt(value);
+        try {
+            this.sh_number = Integer.parseInt(value);
+            
+        } catch (NumberFormatException e) {
+            throw new IPException(Error.InvalidInput, e);
+        }
         return sh_number;
     }
     
@@ -134,11 +146,15 @@ public class MainView extends JFrame {
         this.sh_number = number;
     }
     
-    void appendTable(ArrayList<ArrayList<String>> data) {
+    void appendAll(ArrayList<ArrayList<String>> data) {
         // row number 0 contains texts(which are header of each column)
         for (ArrayList<String> aData : data) {
             tm.addRow(aData.toArray());
         }
+    }
+    
+    void appendTable(String subnetID, String firstIP, String lastIP, String broadcast) {
+        tm.addRow(new String[]{String.valueOf(tm.getRowCount()), subnetID, firstIP, lastIP, broadcast});
     }
     
     void clearTable() {

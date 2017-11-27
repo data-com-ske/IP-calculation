@@ -37,7 +37,7 @@ public class MainController {
         MainView.end();
     }
     
-    public void handleEnterKey() {
+    private void handleEnterKey() {
         view.addEnterButtonListener(e -> {
             IPAddress ip;
             try {
@@ -67,40 +67,23 @@ public class MainController {
                 
                 NumberBase b = new NumberBase("1" + host.returnBinary(), Base.Binary);
                 for (int j = 0; j < Math.pow(2, subnet.getNumber()); j++) {
-                    ArrayList<String> subData = new ArrayList<>();
-                    subData.add(String.valueOf(j));
-                    
                     NumberBase bb = new NumberBase(ip.toBinaryLong(), Base.Binary);
-                    subData.add(ip.toString());
                     
-                    String nextIP = bb.add(b).toString();
-                    NumberBase nextIPNumber = new NumberBase(nextIP, Base.Binary);
+                    NumberBase nextIPNumber = new NumberBase(bb.add(b).toString(), Base.Binary);
                     
                     String next = bb.add(NumberBase.Utils.toNumberBase(1)).toString();
-                    subData.add(IPUtils.toIPAddressBinary(next, false).toString());
                     
                     String last = nextIPNumber.minus(NumberBase.Utils.toNumberBase(2)).toString();
-                    subData.add(IPUtils.toIPAddressBinary(last, false).toString());
                     
                     String broadcast = nextIPNumber.minus(NumberBase.Utils.toNumberBase(1)).toString();
-                    subData.add(IPUtils.toIPAddressBinary(broadcast, false).toString());
                     
-                    
-                    data.add(subData);
+                    view.appendTable(ip.toString(), IPUtils.toIPAddressBinary(next, false).toString(), IPUtils.toIPAddressBinary(last, false).toString(), IPUtils.toIPAddressBinary(broadcast, false).toString());
                     // next
-                    ip = IPUtils.toIPAddressBinary(nextIP, false);
+                    ip = IPUtils.toIPAddressBinary(nextIPNumber.toString(), false);
                 }
-                
-                view.appendTable(data);
-                
-                // TODO: add calculation logic
-                // use append method to add to table
-                // view.appendTable();
-                
-                
             } catch (IPException e1) {
                 JOptionPane.showMessageDialog(null, e1.getErrorMessage(), "error code: " + e1.getErrorCode(), JOptionPane.ERROR_MESSAGE);
-                e1.printStackTrace();
+                // e1.printStackTrace();
             }
         });
     }
