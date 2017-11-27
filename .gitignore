@@ -83,6 +83,8 @@ hs_err_pid*
 .gradle
 build/
 
+!build/libs/*.jar
+
 # Ignore Gradle GUI config
 gradle-app.setting
 
