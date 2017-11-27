@@ -8,7 +8,7 @@ package edu.ske13.exception;
 public enum Error {
     ValidateException("invalid input", 100),
     
-    InvalidIPException("IP is not invalid", 200),
+    InvalidIPException("IP is not valid!", 200),
     
     InvalidInput("input not accepted", 201),
     

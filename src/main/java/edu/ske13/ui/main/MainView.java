@@ -4,6 +4,7 @@ import edu.ske13.annotations.Nullable;
 import edu.ske13.exception.Error;
 import edu.ske13.exception.IPException;
 import edu.ske13.exception.NotImplementedException;
+import edu.ske13.ui.font.Fontbook;
 import edu.ske13.utils.ui.Display;
 
 import javax.swing.*;
@@ -17,11 +18,11 @@ import static javax.swing.SwingUtilities.invokeLater;
 
 public class MainView extends JFrame {
     private static MainView view = null;
-
+    
     public enum InputType {
         SUBNET,
         HOST;
-
+        
         public static InputType other(InputType t) {
             switch (t) {
                 case HOST:
@@ -37,28 +38,28 @@ public class MainView extends JFrame {
             return name().toLowerCase(Locale.ENGLISH);
         }
     }
-
+    
     private JTextField ip1;
     private JTextField ip2;
     private JTextField ip3;
     private JTextField ip4;
     private JTextField sh;
-
+    
     private DefaultTableModel tm;
     private JTable table;
-
+    
     private JComboBox<InputType> comboBox;
-
+    
     private JButton enterBtn;
-
+    
     private String ip;
     private int sh_number;
-
-
+    
+    
     public MainView() {
         initialize();
     }
-
+    
     private void compile(Point point) {
         pack();
         setMinimumSize(new Dimension(getWidth(), getHeight()));
@@ -67,16 +68,16 @@ public class MainView extends JFrame {
         setVisible(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
-
+    
     static MainView getView() {
         if (view == null) view = new MainView();
         return view;
     }
-
+    
     static Dimension getPageSize() {
         return MainView.getView().getSize();
     }
-
+    
     /**
      * run this view with given point, or default if point is null
      *
@@ -86,38 +87,38 @@ public class MainView extends JFrame {
     static void run(@Nullable Point point) {
         invokeLater(() -> MainView.getView().compile(point));
     }
-
+    
     /**
      * run this view in center of screen
      */
     static void run() {
         invokeLater(() -> MainView.getView().compile(Display.getCenterLocation(MainView.getPageSize())));
     }
-
+    
     /**
      * close current view, only
      */
     static void end() {
         MainView.getView().dispose();
     }
-
+    
     /**
      * exit the program
      */
     static void exit() {
         System.exit(0);
     }
-
+    
     /**************** controller usage method ****************/
-
+    
     void addEnterButtonListener(ActionListener a) {
         enterBtn.addActionListener(a);
     }
-
+    
     InputType getInputType() {
         return (InputType) comboBox.getSelectedItem();
     }
-
+    
     String getIP() {
         String value = ip1.getText();
         String value2 = ip2.getText();
@@ -126,7 +127,7 @@ public class MainView extends JFrame {
         this.ip = String.format("%s.%s.%s.%s", value, value2, value3, value4);
         return ip;
     }
-  
+    
     Integer getHostOrSubnetNumber() throws IPException {
         String value = sh.getText();
         if (value.equals("")) return 0;
@@ -138,11 +139,11 @@ public class MainView extends JFrame {
         }
         return sh_number;
     }
-
+    
     void setIP(String ip) {
         this.ip = ip;
     }
-
+    
     void setHostOrSubnetNumber(Integer number) {
         this.sh_number = number;
     }
@@ -167,121 +168,114 @@ public class MainView extends JFrame {
     }
 
     /* *************** ui helper / validation *************** */
-
+    
     private boolean checkIP() {
         throw new NotImplementedException();
     }
-
+    
     private void nextIPInput() {
         throw new NotImplementedException();
     }
-
+    
     /**
      * Initialize the contents of the
      */
     private void initialize() {
-
+        
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setMinimumSize(new Dimension(400, 500));
         this.getContentPane().setLayout(new GridLayout());
-
+        
         Container containerMain = new Container();
         BoxLayout layout = new BoxLayout(containerMain, BoxLayout.Y_AXIS);
         containerMain.setLayout(layout);
         this.getContentPane().add(containerMain);
-
+        
         Container containerA = new Container();
         containerMain.add(containerA);
         FlowLayout layout1 = new FlowLayout();
         containerA.setLayout(layout1);
-
+        
         Container containerB = new Container();
         containerMain.add(containerB);
         FlowLayout layout2 = new FlowLayout();
         containerB.setLayout(layout2);
-
+        
         Container containerC = new Container();
         containerMain.add(containerC);
         FlowLayout layout3 = new FlowLayout();
         containerC.setLayout(layout3);
-
+        
         JLabel title = new JLabel("<html>DESIGNING SUBNET<br><br></html>", SwingConstants.CENTER);
         title.setHorizontalAlignment(CENTER);
         title.setVerticalAlignment(CENTER);
-        title.setFont(new Font("Snowinter", Font.BOLD, 60));
+        title.setFont(Fontbook.getShowInterFree(Font.BOLD, 60));
         containerMain.add(title);
-
+        
         table = new JTable();
         tm = new DefaultTableModel(new Object[]{
                 "Subnet", "Subnet ID", "1st Add", "Last Add", "Broadcast"
         }, 0);
-        table.getTableHeader().setFont(new Font("Ailerons", Font.BOLD, 20));
+        table.getTableHeader().setFont(Fontbook.getAilerons(Font.BOLD, 20));
         table.setModel(tm);
-        table.setFont(new Font("Sathu", Font.BOLD, 15));
+        table.setFont(Fontbook.getSathu(Font.BOLD, 15));
         table.enableInputMethods(false);
         table.setForeground(Color.DARK_GRAY);
-        table.setPreferredScrollableViewportSize(new Dimension(800,400));
+        table.setPreferredScrollableViewportSize(new Dimension(800, 400));
         containerC.add(new JScrollPane(table));
-
+        
         JLabel lblIp = new JLabel("IP: ");
-        lblIp.setFont(new Font("Ailerons", Font.BOLD, 20));
+        lblIp.setFont(Fontbook.getAilerons(Font.BOLD, 20));
         lblIp.setBounds(35, 28, 46, 14);
         containerA.add(lblIp);
-
+        
         ip1 = new JTextField();
-        ip1.setFont(new Font("Ailerons", Font.BOLD, 20));
-        ip1.setBounds(91, 25, 53, 20);
-        containerA.add(ip1);
+        ip1.setFont(Fontbook.getAilerons(Font.BOLD, 20));
         ip1.setColumns(10);
-
+        containerA.add(ip1);
+        
         JLabel label = new JLabel(".");
-        label.setFont(new Font("Ailerons", Font.BOLD, 20));
-        label.setBounds(154, 28, 11, 14);
+        label.setFont(Fontbook.getAilerons(Font.BOLD, 20));
         containerA.add(label);
-
+        
         ip2 = new JTextField();
-        ip2.setFont(new Font("Ailerons", Font.BOLD, 20));
+        ip2.setFont(Fontbook.getAilerons(Font.BOLD, 20));
         ip2.setColumns(10);
-        ip2.setBounds(164, 25, 53, 20);
         containerA.add(ip2);
-
+        
         JLabel dot1 = new JLabel(".");
-        dot1.setFont(new Font("Ailerons", Font.BOLD, 20));
-        dot1.setBounds(224, 28, 11, 14);
+        dot1.setFont(Fontbook.getAilerons(Font.BOLD, 20));
         containerA.add(dot1);
-
+        
         ip3 = new JTextField();
-        ip3.setFont(new Font("Ailerons", Font.BOLD, 20));
+        ip3.setFont(Fontbook.getAilerons(Font.BOLD, 20));
         ip3.setColumns(10);
-        ip3.setBounds(237, 25, 53, 20);
         containerA.add(ip3);
-
+        
         JLabel dot2 = new JLabel(".");
-        dot2.setFont(new Font("Ailerons", Font.BOLD, 20));
-        dot2.setBounds(300, 28, 11, 14);
+        dot2.setFont(Fontbook.getAilerons(Font.BOLD, 20));
         containerA.add(dot2);
-
+        
         ip4 = new JTextField();
-        ip4.setFont(new Font("Ailerons", Font.BOLD, 20));
+        ip4.setFont(Fontbook.getAilerons(Font.BOLD, 20));
         ip4.setColumns(10);
-        ip4.setBounds(310, 25, 53, 20);
         containerA.add(ip4);
-
+        
         JLabel SH_text = new JLabel("Type: ");
-        SH_text.setFont(new Font("Ailerons", Font.BOLD, 20));
+        SH_text.setFont(Fontbook.getAilerons(Font.BOLD, 20));
         containerB.add(SH_text);
-
+        
         comboBox = new JComboBox<>(InputType.values());
         containerB.add(comboBox);
-
+        
         sh = new JTextField();
-        sh.setFont(new Font("Ailerons", Font.BOLD, 20));
+        sh.setFont(Fontbook.getAilerons(Font.BOLD, 20));
         sh.setBounds(92, 73, 271, 20);
         containerB.add(sh);
         sh.setColumns(10);
-
+        
         enterBtn = new JButton("Enter");
-        enterBtn.setFont(new Font("Ailerons", Font.BOLD, 20));
+        enterBtn.setFont(Fontbook.getAilerons(Font.BOLD, 20));
         containerB.add(enterBtn);
     }
 }
