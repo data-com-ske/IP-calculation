@@ -1,5 +1,5 @@
 group 'edu.ske13'
-version '0.0.1-beta.1'
+version '1.0.0-beta.1'
 
 apply plugin: 'java'
 // apply plugin: 'org.junit.platform.gradle.plugin'
@@ -13,6 +13,7 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile group: 'pl.pragmatists', name: 'JUnitParams', version: '1.1.1'
 
 //    testCompileOnly('org.apiguardian:apiguardian-api:1.0.0')
 

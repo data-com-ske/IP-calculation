@@ -44,6 +44,10 @@ jobs:
           name: upload (codecov)
           command: bash <(curl -s https://codecov.io/bash)
 
+      - run:
+          name: build jar file
+          command: gradle jar
+
       - store_test_results:
           path: build/test-results/test
 
